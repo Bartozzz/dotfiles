@@ -1,0 +1,13 @@
+*.tmproj
+*.tmproject
+tmtags
+
+.DS_Store
+Icon?
+*.orig
+._*
+
+.Spotlight-V100
+.Trashes
+
+Cached Theme.pak
