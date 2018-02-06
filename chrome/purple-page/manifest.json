@@ -1,0 +1,12 @@
+{
+  "name": "Purple Page",
+  "description": "Display a blank page instead of the usual new tab page with thumbnails.",
+  "manifest_version": 2,
+  "version": "1.0.0",
+  "chrome_url_overrides": {
+    "newtab": "page.html"
+  },
+  "icons": {
+    "128": "icon.png"
+  }
+}
