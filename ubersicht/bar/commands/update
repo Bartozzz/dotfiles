@@ -1,0 +1,120 @@
+#!/usr/bin/env node
+
+const cp = require("child_process");
+const strftime = require("strftime");
+const batteryLevel = require("battery-level");
+
+/**
+ * Returns focused window name.
+ *
+ * @return  {Promise<string>}
+ */
+function getFocusedWindow() {
+  return new Promise(function (resolve, reject) {
+    cp.exec(
+      `osascript -e 'tell application "System Events"' -e 'set frontApp to name of first application process whose frontmost is true' -e 'end tell'`,
+      function (err, stdout, stderr) {
+        resolve(stdout.replace("\n", ""));
+      }
+    );
+  });
+};
+
+/**
+ * Returns current ID and layout of the current desktop.
+ *
+ * @see     {https://github.com/koekeishiya/chunkwm}
+ * @return  {Promise<string>}
+ */
+function getChunkwmSkhd() {
+  return new Promise(function (resolve, reject) {
+    cp.exec(
+      `echo "$(/usr/local/bin/chunkc tiling::query --desktop id):$(/usr/local/bin/chunkc tiling::query --desktop mode)"`,
+      function (err, stdout, stderr) {
+        resolve(stdout.replace("\n", ""));
+      }
+    );
+  });
+}
+
+/**
+ * Returns info about CPU usage.
+ *
+ * @return  {Promise<Object>}
+ */
+function getCPU() {
+  return new Promise(function (resolve, reject) {
+    cp.exec("top -u -l 1", function (err, stdout, stderr) {
+      const output = stdout.split("\n");
+
+      resolve({
+        user: parseFloat(/(\d+\.\d+)%\suser/.exec(output[3])[1]),
+        idle: parseFloat(/(\d+\.\d+)%\sidle/.exec(output[3])[1]),
+        sys: parseFloat(/(\d+\.\d+)%\ssys/.exec(output[3])[1])
+      });
+    });
+  });
+}
+
+/**
+ * Returns info about memory usage.
+ *
+ * @return  {Promise<Object>}
+ */
+function getMEM() {
+  return new Promise(function (resolve, reject) {
+    cp.exec("memory_pressure && sysctl -n hw.memsize", function (err, stdout, stderr) {
+      const output = stdout.split("\n");
+
+      resolve({
+        inactive: parseInt(output[13].split(": ")[1]),
+        active: parseInt(output[12].split(": ")[1]),
+        wired: parseInt(output[16].split(": ")[1]),
+        total: parseInt(output[28]),
+        free: parseInt(output[3].split(": ")[1])
+      });
+    });
+  });
+}
+
+/**
+ * Returns info about network usage.
+ *
+ * @return  {Promise<Object>}
+ */
+function getNET() {
+  return new Promise(function (resolve, reject) {
+    cp.exec("./network", {
+      cwd: __dirname
+    }, function (err, stdout, stderr) {
+      const output = stdout.split("^");
+
+      resolve({
+        down: parseInt(output[0]),
+        up: parseInt(output[1])
+      });
+    });
+  });
+}
+
+Promise.all([
+  batteryLevel(),
+  getFocusedWindow(),
+  getChunkwmSkhd(),
+  getCPU(),
+  getMEM(),
+  getNET()
+]).then(function(data) {
+  console.log(
+    JSON.stringify({
+      date: strftime("%a %d %b"),
+      time: strftime("%H:%M"),
+      focused: data[1],
+      battery: data[0] * 100,
+      chunkwm: data[2],
+      cpu: data[3],
+      mem: data[4],
+      net: data[5]
+    })
+  );
+});

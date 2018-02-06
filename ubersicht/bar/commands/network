@@ -1,0 +1,12 @@
+#!/bin/bash
+# Source: https://github.com/dionmunk/ubersicht-network-throughput/blob/master/network-throughput.widget/lib/network.sh
+# Author: Dion Munk - https://github.com/dionmunk
+
+function getBytes {
+    netstat -w1 > ../cache/network.out & sleep 1.5; kill $!;
+}
+
+BYTES=$(getBytes > /dev/null);
+BYTES=$(cat ../cache/network.out | grep '[0-9].*');
+BYTES=$(echo $BYTES | awk '{print $3 "^" $6}');
+echo $BYTES;
