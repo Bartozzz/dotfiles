@@ -1,0 +1,8 @@
+docblockr@0.13.6
+highlight-selected@0.13.1
+linter@2.2.0
+nuclide@0.280.0
+pigments@0.40.2
+prettier-atom@0.49.2
+pure-syntax@0.3.0
+zentabs@0.8.9
