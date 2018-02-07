@@ -14,13 +14,10 @@
       "tab_background_text": [105, 105, 133],
       "tab_text": [209, 209, 224]
     },
-    "tints" : {
-      "buttons" : [0.33, 0.5, 0.47]
-    },
     "images": {
+      "theme_tab_background_incognito": "images/theme_tab_background_incognito.png",
+      "theme_tab_background_v": "images/theme_tab_background_v.png",
       "theme_tab_background": "images/theme_tab_background.png",
-      "theme_tab_background_incognito": "images/theme_tab_background.png",
-      "theme_tab_background_v": "images/theme_tab_background.png",
       "theme_toolbar": "images/theme_toolbar.png"
     }
   }
