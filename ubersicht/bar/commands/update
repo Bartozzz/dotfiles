@@ -110,7 +110,7 @@ Promise.all([
       date: strftime("%a %d %b"),
       time: strftime("%H:%M"),
       focused: data[1],
-      battery: data[0] * 100,
+      battery: parseInt(data[0]) * 100,
       chunkwm: data[2],
       cpu: data[3],
       mem: data[4],
