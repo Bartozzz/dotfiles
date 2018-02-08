@@ -15,6 +15,9 @@ done
 # Ask for the administrator password upfront
 sudo -v
 
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -145,12 +148,13 @@ unset FILES_TO_SYMLINK
 #              P A C K A G E   M A N A G E R S  &  P A C K A G E S
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# . "$DOTFILE_DIR/install/brew.sh"
-# . "$DOTFILE_DIR/install/npm.sh"
+. "$DOTFILE_DIR/install/brew.sh"
+. "$DOTFILE_DIR/install/npm.sh"
+. "$DOTFILE_DIR/install/zsh.sh"
 
-# if [ "$(uname)" == "Darwin" ]; then
-#   . "$DOTFILE_DIR/install/brew-cask.sh"
-# fi
+if [ "$(uname)" == "Darwin" ]; then
+  . "$DOTFILE_DIR/install/brew-cask.sh"
+fi
 
 
 
@@ -164,63 +168,3 @@ cp -r $DOTFILE_DIR/atom/packages.list $HOME/.atom
 # apm list --installed --bare
 # apm install --packages-file $HOME/.atom/packages.list
 print_success "Installed Atom editor plugins"
-
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#              T E R M I N A L   &   I T E R M 2   S E C T I O N
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# TODO  Automatically install purple theme for iTerm
-
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
-
-# Don’t display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
-
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#                            Z S H   S E C T I O N
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# NOTE  Install Zsh
-if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
-  # Install Oh My Zsh if it isn't already present
-  if [[ ! -d $dir/oh-my-zsh/ ]]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  fi
-
-  # Set the default shell to zsh if it isn't currently set to zsh
-  if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
-    chsh -s $(which zsh)
-  fi
-else
-  # If zsh isn't installed, get the platform of the current machine
-  platform=$(uname);
-
-  # If the platform is Linux, try an apt-get to install zsh and then recurse
-  if [[ $platform == 'Linux' ]]; then
-    if [[ -f /etc/redhat-release ]]; then
-      sudo yum install zsh
-      install_zsh
-    fi
-
-    if [[ -f /etc/debian_version ]]; then
-      sudo apt-get install zsh
-      install_zsh
-    fi
-  elif [[ $platform == 'Darwin' ]]; then
-    print_info "We'll install zsh, then re-run this script!"
-    brew install zsh
-    exit
-  fi
-fi
-
-# NOTE  Install Zsh theme
-# https://github.com/tylerreckart/hyperzsh
-mkdir $ZSH/themes
-wget -O $ZSH/themes/hyperzsh.zsh-theme https://raw.githubusercontent.com/tylerreckart/hyperzsh/master/hyperzsh.zsh-theme
-
-# NOTE  Reload zsh settings
-source ~/.zshrc
