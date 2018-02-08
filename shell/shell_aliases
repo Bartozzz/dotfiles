@@ -7,10 +7,6 @@
 #       full list of active aliases, run `alias`.
 #
 
-# Enable aliases to be sudo’ed
-alias sudo="sudo "
-
-# Easier navigation: .., ..., ~ and -
 alias cd..="cd .."
 alias ~="cd ~"
 alias ..="cd .."
@@ -39,3 +35,23 @@ alias whois="whois -h whois-servers.net"
 
 # File size
 alias fs="stat -f \"%z bytes\""
+
+# NOTE  Thefuck?
+eval $(thefuck --alias)
+
+# NOTE  Aliases
+alias top="vtop"
+alias cls="clear"
+alias lsa="exa -abghHli --group-directories-first"
+alias ls='ls -FGlAhp'                       # Preferred 'ls' implementation
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias rmdir="rm -rif"                       # Preferred 'rmdir' implementation
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+alias ~="cd ~"                              # ~:            Go Home
+alias c='clear'                             # c:            Clear terminal display

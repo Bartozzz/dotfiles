@@ -9,6 +9,12 @@ DISABLE_LS_COLORS="true"
 ENABLE_CORRECTION="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# Load the shell dotfiles
+for file in $HOME/.{shell_exports,shell_aliases,shell_functions,shell_config,bashrc}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
+
 # Plugins
 plugins=(git npm node)
 
