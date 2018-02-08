@@ -12,3 +12,8 @@ This is a collection of dotfiles and scripts I use on my macOS. They should be c
 $ git clone https://github.com/Bartozzz/dotfiles.git ~/.dotfiles
 $ ~/.dotfiles/setup
 ```
+
+## `~/.dotfiles/fonts`
+
+### [Fira Code: monospaced font with programming ligatures](https://github.com/tonsky/FiraCode)
+>*Programmers use a lot of symbols, often encoded with several characters. For the human brain, sequences like ->, <= or := are single logical tokens, even if they take two or three characters on the screen. Your eye spends a non-zero amount of energy to scan, parse and join multiple characters into a single logical one. Ideally, all programming languages should be designed with full-fledged Unicode symbols for operators, but that’s not the case yet.*
