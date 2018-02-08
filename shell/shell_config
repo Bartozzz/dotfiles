@@ -1,0 +1,14 @@
+# Source: https://github.com/nicksp/dotfiles/blob/master/shell/shell_config
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt inc_append_history   # Append history as commands are executed
+setopt hist_ignore_all_dups # Don't save duplicates
+unsetopt share_history      # Disable sharing history between terminals
+
+# Expansion and Globbing
+# treat #, ~, and ^ as part of patterns for filename generation
+setopt extended_glob

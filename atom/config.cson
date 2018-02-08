@@ -1,0 +1,118 @@
+"*":
+  "atom-clock": {}
+  "atom-package-deps":
+    ignored: [
+      "linter"
+    ]
+  core:
+    customFileTypes:
+      "source.ini": [
+        ".buckconfig"
+        ".hgrc"
+        ".flowconfig"
+      ]
+      "source.json": [
+        "BUCK.autodeps"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
+    disabledPackages: [
+      "about"
+      "background-tips"
+      "exception-reporting"
+      "link"
+      "metrics"
+      "timecop"
+      "welcome"
+      "tree-view"
+      "spell-check"
+      "linter"
+    ]
+    excludeVcsIgnoredPaths: false
+    projectHome: "/Users/Bartek/Projects"
+    telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "pure-syntax"
+    ]
+    titleBar: "hidden"
+  docblockr:
+    min_spaces_between_columns: 2
+    per_section_indent: true
+    spacer_between_sections: "after_description"
+  editor:
+    fontFamily: "Fira Code, Menlo, Monaco, 'Courier New', monospace"
+    fontSize: 11
+    scrollPastEnd: true
+  "exception-reporting":
+    userId: "0d9daae4-2c43-45e0-86e3-b146e06aa1d6"
+  "linter-alex":
+    detectConfig: false
+    detectIgnore: false
+    scopes: [
+      "source.js"
+      "source.asciidoc"
+      "source.gfm"
+      "source.pfm"
+      "text.git-commit"
+      "text.plain"
+      "text.plain.null-grammar"
+    ]
+  "linter-eslint": {}
+  "linter-write-good":
+    additionalArgs: "--yes-eprime"
+    severityLevel: "Info"
+  nuclide:
+    "atom-ide-code-format":
+      formatOnType: false
+    "atom-ide-diagnostics-ui":
+      showDirectoryColumn: true
+    "nuclide-file-tree":
+      hideIgnoredNames: false
+      showOpenFiles: false
+      showUncommittedChanges: false
+    "nuclide-flow": {}
+    "nuclide-home":
+      showHome: false
+    use:
+      "atom-ide-console": false
+      "nuclide-adb-logcat": false
+      "nuclide-adb-sdb": false
+      "nuclide-buck": false
+      "nuclide-buck-ios": false
+  "nuclide-format-js":
+    jsxSuffix: false
+  "platformio-ide-terminal":
+    ansiColors:
+      normal: {}
+    core: {}
+    style: {}
+    toggles:
+      autoClose: true
+  "prettier-atom":
+    formatOnSaveOptions:
+      enabled: true
+      isDisabledIfNotInPackageJson: true
+      markdownScopes: [
+        "null"
+      ]
+    prettierEslintOptions: {}
+    prettierOptions:
+      bracketSpacing: false
+      trailingComma: "es5"
+    useEslint: true
+    useStylelint: true
+  "spell-check":
+    locales: [
+      "en-US"
+    ]
+  "status-bar":
+    fullWidth: false
+  tabs:
+    addNewTabsAtEnd: true
+    showIcons: false
+  typewriter:
+    scopes: "text.md,source.gfm,text.html.mediawiki,text.tex.latex,source.js"
+  zentabs:
+    neverCloseUnsaved: true

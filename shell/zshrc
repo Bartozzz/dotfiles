@@ -1,0 +1,26 @@
+export ZSH=/Users/Bartek/.oh-my-zsh
+autoload -U colors && colors
+autoload -U compinit && compinit
+
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="hyperzsh"
+CASE_SENSITIVE="true"
+DISABLE_LS_COLORS="true"
+ENABLE_CORRECTION="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Plugins
+plugins=(git npm node)
+
+# Sources
+source $ZSH/oh-my-zsh.sh
+source /usr/local/share/antigen/antigen.zsh
+
+# Antigen bundles
+antigen use oh-my-zsh
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle tylerreckart/hyperzsh
+antigen apply

@@ -1,0 +1,67 @@
+#
+# NOTE  This file holds all my BASH configurations and aliases
+#
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
+
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
+
+
+# NOTE  Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+
+source ~/.bash_prompt
+
+for file in ~/.{bash_prompt}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+
+unset file;
+
+
+# NOTE  Set Paths
+export PATH="$PATH:/usr/local/bin/"
+export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+
+
+# NOTE  Set Default Editor
+export EDITOR="vim"
+
+
+# NOTE  Set default blocksize for ls, df, du
+#       http://hints.macworld.com/comment.php?mode=view&cid=24491
+export BLOCKSIZE=1k
+
+
+# NOTE  Add color to terminal
+#       http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+
+# NOTE  Aliases
+alias top="vtop"
+alias cls="clear"
+alias lsa="exa -abghHli --group-directories-first"
+alias ls='ls -GFhl'
+alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias rmdir="rm -rif"                       # Preferred 'rmdir' implementation
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+alias ~="cd ~"                              # ~:            Go Home
+alias c='clear'                             # c:            Clear terminal display
+
+
+# NOTE  Thefuck?
+eval $(thefuck --alias)

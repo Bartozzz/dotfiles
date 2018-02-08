@@ -1,0 +1,223 @@
+#!/bin/bash
+# Based on: https://github.com/nicksp/dotfiles/blob/master/setup.sh
+# Based on: https://github.com/kaicataldo/dotfiles/blob/master/bin/install.sh
+
+while true; do
+  read -p "Warning: this will overwrite your current dotfiles. Continue? [y/n] " yn
+
+  case $yn in
+    [Yy]* ) break;;
+    [Nn]* ) exit;;
+    * ) echo "Please answer yes or no.";;
+  esac
+done
+
+# Ask for the administrator password upfront
+sudo -v
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#                            U T I L S   S E C T I O N
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# NOTE  Asks for confirmation
+answer_is_yes() {
+  [[ "$REPLY" =~ ^[Yy]$ ]] \
+    && return 0 \
+    || return 1
+}
+
+# NOTE  Asks for confirmation
+ask_for_confirmation() {
+  print_question "$1 (y/n) "
+  read -n 1
+  printf "\n"
+}
+
+# NOTE  Print output in red
+print_error() {
+  printf "\e[0;31m  [✖] $1 $2\e[0m\n"
+}
+
+# NOTE  Print output in purple
+print_info() {
+  printf "\n\e[0;35m $1\e[0m\n\n"
+}
+
+# NOTE  Print output in yellow
+print_question() {
+  printf "\e[0;33m  [?] $1\e[0m"
+}
+
+# NOTE  Print output in green
+print_success() {
+  printf "\e[0;32m  [✔] $1\e[0m\n"
+}
+
+# NOTE  Print command result
+print_result() {
+  [ $1 -eq 0 ] \
+    && print_success "$2" \
+    || print_error "$2"
+
+  [ "$3" == "true" ] && [ $1 -ne 0 ] \
+    && exit
+}
+
+# NOTE  Execute script
+execute() {
+  $1 &> /dev/null
+  print_result $? "${2:-$1}"
+}
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#                    P R E P A R A T I O N   S E C T I O N
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# NOTE  Get the dotfiles directory's absolute path
+export CURRENT_DIT="$(cd "$(dirname "$0")"; pwd -P)"
+export DOTFILE_DIR="$(dirname "$CURRENT_DIT")/dotfiles"
+
+# NOTE  Change to the dotfiles directory
+cd $DOTFILE_DIR
+print_success "Changed to the $DOTFILE_DIR directory"
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#                      S Y M L I N K   S E C T I O N
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# NOTE  Copy Atom editor settings
+ln -s $DOTFILE_DIR/atom ~/.atom
+print_success "Copied Atom editor settings"
+
+# NOTE  Files to symlink
+declare -a FILES_TO_SYMLINK=(
+  'shell/shell_aliases'
+  'shell/shell_config'
+  'shell/shell_exports'
+  'shell/shell_functions'
+  'shell/bash_prompt'
+  'shell/chunkwmrc'
+  'shell/skhdrc'
+  'shell/bashrc'
+  'shell/vimrc'
+  'shell/zshrc'
+)
+
+# NOTE  Symlink files
+local i=''
+local sourceFile=''
+local targetFile=''
+
+for i in ${FILES_TO_SYMLINK[@]}; do
+  sourceFile="$(pwd)/$i"
+  targetFile="$HOME/.$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
+
+  if [ ! -e "$targetFile" ]; then
+    execute "ln -fs $sourceFile $targetFile" "$targetFile → $sourceFile"
+  elif [ "$(readlink "$targetFile")" == "$sourceFile" ]; then
+    print_success "$targetFile → $sourceFile"
+  else
+    ask_for_confirmation "'$targetFile' already exists, do you want to overwrite it?"
+    if answer_is_yes; then
+      rm -rf "$targetFile"
+      execute "ln -fs $sourceFile $targetFile" "$targetFile → $sourceFile"
+    else
+      print_error "$targetFile → $sourceFile"
+    fi
+  fi
+
+done
+
+unset FILES_TO_SYMLINK
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#              P A C K A G E   M A N A G E R S  &  P A C K A G E S
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# . "$DOTFILE_DIR/install/brew.sh"
+# . "$DOTFILE_DIR/install/npm.sh"
+
+# if [ "$(uname)" == "Darwin" ]; then
+#   . "$DOTFILE_DIR/install/brew-cask.sh"
+# fi
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#                          A T O M   S E C T I O N
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# NOTE  Copy over Atom configs
+cp -r $DOTFILE_DIR/atom/packages.list $HOME/.atom
+
+# apm list --installed --bare
+# apm install --packages-file $HOME/.atom/packages.list
+print_success "Installed Atom editor plugins"
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#              T E R M I N A L   &   I T E R M 2   S E C T I O N
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# TODO  Automatically install purple theme for iTerm
+
+# Only use UTF-8 in Terminal.app
+defaults write com.apple.terminal StringEncodings -array 4
+
+# Don’t display the annoying prompt when quitting iTerm
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#                            Z S H   S E C T I O N
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# NOTE  Install Zsh
+if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
+  # Install Oh My Zsh if it isn't already present
+  if [[ ! -d $dir/oh-my-zsh/ ]]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  fi
+
+  # Set the default shell to zsh if it isn't currently set to zsh
+  if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
+    chsh -s $(which zsh)
+  fi
+else
+  # If zsh isn't installed, get the platform of the current machine
+  platform=$(uname);
+
+  # If the platform is Linux, try an apt-get to install zsh and then recurse
+  if [[ $platform == 'Linux' ]]; then
+    if [[ -f /etc/redhat-release ]]; then
+      sudo yum install zsh
+      install_zsh
+    fi
+
+    if [[ -f /etc/debian_version ]]; then
+      sudo apt-get install zsh
+      install_zsh
+    fi
+  elif [[ $platform == 'Darwin' ]]; then
+    print_info "We'll install zsh, then re-run this script!"
+    brew install zsh
+    exit
+  fi
+fi
+
+# NOTE  Install Zsh theme
+# https://github.com/tylerreckart/hyperzsh
+mkdir $ZSH_CUSTOM/themes
+wget -O $ZSH_CUSTOM/themes/hyperzsh.zsh-theme https://raw.githubusercontent.com/tylerreckart/hyperzsh/master/hyperzsh.zsh-theme
+
+# NOTE  Reload zsh settings
+source ~/.zshrc

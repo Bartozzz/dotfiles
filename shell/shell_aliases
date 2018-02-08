@@ -1,0 +1,41 @@
+#
+# Source: https://github.com/nicksp/dotfiles/blob/master/shell/shell_aliases
+#
+# NOTE  Set personal aliases, overriding those provided by oh-my-zsh libs,
+#       plugins, and themes. Aliases can be placed here, though oh-my-zsh users
+#       are encouraged to define aliases within the ZSH_CUSTOM folder. For a
+#       full list of active aliases, run `alias`.
+#
+
+# Enable aliases to be sudo’ed
+alias sudo="sudo "
+
+# Easier navigation: .., ..., ~ and -
+alias cd..="cd .."
+alias ~="cd ~"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias myip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'"
+alias localip="ipconfig getifaddr en1"
+
+# Flush DNS cache
+alias flushdns="dscacheutil -flushcache"
+
+# Networking. IP address, dig, DNS
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias dig="dig +nocmd any +multiline +noall +answer"
+
+# View HTTP traffic
+alias sniff="sudo ngrep -W byline -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+# Enhanced WHOIS lookups
+alias whois="whois -h whois-servers.net"
+
+# File size
+alias fs="stat -f \"%z bytes\""
