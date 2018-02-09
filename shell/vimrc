@@ -1,6 +1,59 @@
-set nocompatible
 set termguicolors
 set background=dark
+set nobackup
+set ruler
+set expandtab
+set nohlsearch
+
+" Indentation
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+
+" Make Vim more useful
+set nocompatible
+
+" Use the OS clipboard by default (on versions compiled with `+clipboard`)
+set clipboard=unnamed
+
+" Enhance command-line completion
+set wildmenu
+
+" Allow cursor keys in insert mode
+set esckeys
+
+" Allow backspace in insert mode
+set backspace=indent,eol,start
+
+" Optimize for fast terminal connections
+set ttyfast
+
+" Add the g flag to search/replace by default
+set gdefault
+
+" Show (partial) command in status line
+set showcmd
+
+" Show matching brackets
+set showmatch
+
+" Do case insensitive matching
+set ignorecase
+
+" Incremental search
+set incsearch
+
+" Automatically save before commands like :next and :ma
+set autowrite
+
+" Use UTF-8 without BOM
+set encoding=utf-8 nobomb
+set fenc=utf8
+set enc=utf8
 
 " This is the oh my vim directory
 let $OH_MY_VIM="/Users/Bartek/.oh-my-vim"
