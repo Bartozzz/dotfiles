@@ -1,5 +1,6 @@
 #
 # Source: https://github.com/nicksp/dotfiles/blob/master/shell/shell_aliases
+# Source: https://github.com/mathiasbynens/dotfiles/blob/master/.aliases
 #
 # NOTE  Set personal aliases, overriding those provided by oh-my-zsh libs,
 #       plugins, and themes. Aliases can be placed here, though oh-my-zsh users
@@ -36,22 +37,25 @@ alias whois="whois -h whois-servers.net"
 # File size
 alias fs="stat -f \"%z bytes\""
 
-# NOTE  Thefuck?
+# Thefuck?
 eval $(thefuck --alias)
 
-# NOTE  Aliases
+# Aliases
 alias top="vtop"
 alias cls="clear"
-alias lsa="exa -abghHli --group-directories-first"
+alias lse="exa -abghHli --group-directories-first"
 alias ls='ls -FGlAhp'                       # Preferred 'ls' implementation
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 alias rmdir="rm -rif"                       # Preferred 'rmdir' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                           # Go back 1 directory level
-alias ...='cd ../../'                       # Go back 2 directory levels
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias ~="cd ~"                              # ~:            Go Home
 alias c='clear'                             # c:            Clear terminal display
+
+# Lock the screen (when going AFK)
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
