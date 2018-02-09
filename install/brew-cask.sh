@@ -9,12 +9,12 @@ brew tap caskroom/versions
 # Install packages
 apps=(
   dash
-  iterm2
   atom
+  iterm2
+  commander-one
   google-chrome
   google-chrome-canary
   spotify
-  commander-one
 )
 
 brew cask install "${apps[@]}"
