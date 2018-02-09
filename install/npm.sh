@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Source: https://github.com/nicksp/dotfiles/blob/master/install/npm.sh
 
 #
@@ -31,6 +31,8 @@ packages=(
   flow-typed
   webpack
   nodemon
+  tldr
+  vtop
 )
 
 npm install -g "${packages[@]}"
