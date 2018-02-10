@@ -2,7 +2,6 @@ export ZSH=/Users/Bartek/.oh-my-zsh
 autoload -U colors && colors
 autoload -U compinit && compinit
 
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="hyperzsh"
 CASE_SENSITIVE="true"
 DISABLE_LS_COLORS="true"
