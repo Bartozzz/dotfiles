@@ -71,6 +71,7 @@ brew install xz
 # - Fuck (https://github.com/nvbn/thefuck): Correct your previous command
 # - Tree (http://mama.indstate.edu/users/ice/tree/): A directory listing utility
 # - wget (http://mama.indstate.edu/users/ice/tree/): Internet file retriever
+# - screenfetch (https://github.com/KittyKatt/screenFetch): Show system info
 # - wifi-password (https://github.com/rauchg/wifi-password): Show network password
 apps=(
   zsh
@@ -81,6 +82,7 @@ apps=(
   thefuck
   tree
   wget
+  screenfetch
   wifi-password
 )
 
