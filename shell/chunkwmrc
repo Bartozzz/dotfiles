@@ -37,7 +37,7 @@ chunkc core::hotload 0
 
 chunkc set global_desktop_mode           bsp
 chunkc set 2_desktop_mode                monocle
-chunkc set 5_desktop_mode                float
+chunkc set 4_desktop_mode                float
 
 chunkc set global_desktop_offset_top     14
 chunkc set global_desktop_offset_bottom  14
@@ -93,7 +93,7 @@ chunkc set window_use_cgs_move           0
 chunkc set focused_border_color          0xff5c56fc
 chunkc set focused_border_width          5
 chunkc set focused_border_radius         3
-chunkc set focused_border_skip_floating  0
+chunkc set focused_border_skip_floating  1
 
 #
 # NOTE: specify plugins to load when chunkwm starts.
@@ -109,5 +109,7 @@ chunkc core::load ffm.so
 #       to pass value containing a whitespace.
 #
 
+chunkc tiling::rule --owner Spotify --role AXWindow --subrole AXDialog --state tile
+chunkc tiling::rule --owner iTerm2 --role AXWindow --subrole AXDialog --state tile
 chunkc tiling::rule --owner Finder --name Copy --state float
 chunkc tiling::rule --owner \"App Store\" --state float

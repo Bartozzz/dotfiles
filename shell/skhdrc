@@ -6,11 +6,15 @@
 alt - f : chunkc tiling::window --toggle fullscreen
 
 # Change focus between tiling/floating windows
-shift + alt - space : chunkc tiling::window --toggle float
+alt - t : chunkc tiling::window --toggle float
 
 # Change layout of desktop
 alt - e : chunkc tiling::desktop --layout bsp
-alt - s : chunkc tiling::desktop --layout monocle
+alt - m : chunkc tiling::desktop --layout monocle
+
+# Toggle sticky, float and resize to picture-in-picture size
+alt - s : chunkc tiling::window --toggle sticky;\
+          chunkc tiling::window --warp-floating pip-right
 
 # Kill focused window
 shift + alt - q : chunkc tiling::window --close
@@ -40,3 +44,11 @@ shift + alt - 3 : chunkc tiling::window --send-to-desktop 3
 shift + alt - 4 : chunkc tiling::window --send-to-desktop 4
 shift + alt - 5 : chunkc tiling::window --send-to-desktop 5
 shift + alt - 6 : chunkc tiling::window --send-to-desktop 6
+
+# Increase region size
+shift + alt - up : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west\
+                   chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
+
+# Decrease region size
+shift + alt - down : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west\
+                     chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
