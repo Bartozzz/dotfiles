@@ -9,7 +9,7 @@ This is a collection of dotfiles and scripts I use on my macOS. They should be c
 - Useful Homebrew packages;
 
 <div align="center" style="margin: 1rem 0">
-![macOS](https://i.imgur.com/3OeGD9u.png)
+  <img src="https://i.imgur.com/3OeGD9u.png" />
 </div>
 
 ## `~/.dotfiles/setup`
