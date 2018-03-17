@@ -1,32 +1,30 @@
-/*
- * Your Stylesheet
- *
- * This stylesheet is loaded when Atom starts up and is reloaded automatically
- * when it is changed and saved.
- *
- * Add your own CSS or Less to fully customize Atom.
- * If you are unfamiliar with Less, you can read more about it here:
- * http://lesscss.org
- */
-
-
-/*
- * Examples
- * (To see them, uncomment and save)
- */
-
-// style the background color of the tree view
-.tree-view {
-  // background-color: whitesmoke;
-}
-
-// style the background and foreground colors on the atom-text-editor-element itself
 atom-text-editor {
-  // color: white;
-  // background-color: hsl(180, 24%, 12%);
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
 }
 
-// style UI elements inside atom-text-editor
-atom-text-editor .cursor {
-  // border-color: red;
+atom-text-editor.editor .syntax--string.syntax--quoted,
+atom-text-editor.editor .syntax--string.syntax--regexp {
+  -webkit-font-feature-settings: "liga" off, "calt" off;
+}
+
+.entry {
+  padding-top: .15em;
+  padding-bottom: .15em;
+}
+
+.syntax--css > .syntax--type,
+.syntax--js > .syntax--keyword:not(.syntax--operator),
+.syntax--js > .syntax--type:not(.syntax--object):not(.syntax--arrow) {
+  vertical-align: baseline;
+
+  font-family: 'OperatorMono Nerd Font';
+  font-size: 1.1em;
+  font-style: italic;
+  font-weight: 100;
+  font-variant-numeric: tabular-nums lining-nums;
+
+  height: inherit;
+  line-height: 1rem;
+  // letter-spacing: .05em;
 }
