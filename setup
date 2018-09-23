@@ -163,7 +163,7 @@ fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # NOTE  Copy over Atom configs
-cp -r $DOTFILE_DIR/atom/packages.list $HOME/.atom
+# cp -r $DOTFILE_DIR/atom/packages.list $HOME/.atom
 
 # apm list --installed --bare
 # apm install --packages-file $HOME/.atom/packages.list
