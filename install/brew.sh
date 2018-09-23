@@ -25,20 +25,14 @@ brew update
 
 # Upgrade any already-installed formulae
 brew upgrade
+brew upgrade gawk
 
-# Install GNU core utilities (those that come with macOS are outdated).
 brew install coreutils
-
-# Install some other useful utilities like `sponge`.
 brew install moreutils
-
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
-
-# Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
 
-# Install some CTF tools; see https://github.com/ctfs/write-ups.
+# Install some CTF tools:
 brew install aircrack-ng
 brew install bfg
 brew install binutils
@@ -64,26 +58,19 @@ brew install ucspi-tcp
 brew install xpdf
 brew install xz
 
-# Install the Homebrew packages I use on a day-to-day basis.
-#
-# - Languages: nvm (Node.js)
-# - Exa (https://github.com/ogham/exa): Replacement for ls
-# - Fuck (https://github.com/nvbn/thefuck): Correct your previous command
-# - Tree (http://mama.indstate.edu/users/ice/tree/): A directory listing utility
-# - wget (http://mama.indstate.edu/users/ice/tree/): Internet file retriever
-# - screenfetch (https://github.com/KittyKatt/screenFetch): Show system info
-# - wifi-password (https://github.com/rauchg/wifi-password): Show network password
+# Install the Homebrew packages I use on a day-to-day basis:
 apps=(
   zsh
-  exa
+  antigen         # (https://github.com/zsh-users/antigen): plugin manager for zsh
+  exa             # (https://github.com/ogham/exa): Replacement for ls
   nvm
   git
   git-extras
-  thefuck
-  tree
-  wget
-  screenfetch
-  wifi-password
+  thefuck         # (https://github.com/nvbn/thefuck): Correct your previous command
+  tree            # (http://mama.indstate.edu/users/ice/tree/): A directory listing utility
+  wget            # (https://www.gnu.org/software/wget/): Internet file retriever
+  screenfetch     # (https://github.com/KittyKatt/screenFetch): Show system info
+  wifi-password   # (https://github.com/rauchg/wifi-password): Show network password
 )
 
 brew install "${apps[@]}"

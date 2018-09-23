@@ -3,18 +3,24 @@
 
 # Install Caskroom
 brew tap caskroom/cask
-brew install brew-cask
 brew tap caskroom/versions
 
 # Install packages
 apps=(
-  dash
-  atom
+  imagealpha
+  imageoptim
+  # dash
+  # atom
+  vscodium
   iterm2
-  commander-one
+  # commander-one
+  firefox
+  firefox-nightly
   google-chrome
   google-chrome-canary
-  spotify
+  # spotify
+  skype
+  slack
 )
 
 brew cask install "${apps[@]}"

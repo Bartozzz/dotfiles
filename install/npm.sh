@@ -33,6 +33,8 @@ packages=(
   nodemon
   tldr
   vtop
+  http-server
+  servedir
 )
 
 npm install -g "${packages[@]}"
