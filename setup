@@ -148,6 +148,9 @@ unset FILES_TO_SYMLINK
 #              P A C K A G E   M A N A G E R S  &  P A C K A G E S
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Preparation
+mkdir ~/.nvm
+
 . "$DOTFILE_DIR/install/brew.sh"
 . "$DOTFILE_DIR/install/npm.sh"
 . "$DOTFILE_DIR/install/zsh.sh"
