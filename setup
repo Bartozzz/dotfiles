@@ -95,8 +95,8 @@ print_success "Changed to the $DOTFILE_DIR directory"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # NOTE  Copy Atom editor settings
-ln -s $DOTFILE_DIR/atom ~/.atom
-print_success "Copied Atom editor settings"
+# ln -s $DOTFILE_DIR/atom ~/.atom
+# print_success "Copied Atom editor settings"
 
 # NOTE  Files to symlink
 declare -a FILES_TO_SYMLINK=(
@@ -167,4 +167,4 @@ cp -r $DOTFILE_DIR/atom/packages.list $HOME/.atom
 
 # apm list --installed --bare
 # apm install --packages-file $HOME/.atom/packages.list
-print_success "Installed Atom editor plugins"
+# print_success "Installed Atom editor plugins"
