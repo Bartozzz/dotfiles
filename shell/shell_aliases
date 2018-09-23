@@ -44,6 +44,7 @@ alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias f='open -a Finder ./'                 # f: Opens current directory in MacOS Finder
 alias ~="cd ~"                              # ~: Go Home
 alias c='clear'                             # c: Clear terminal display
+alias readlink=greadlink
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
