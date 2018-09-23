@@ -1,22 +1,10 @@
 #!/bin/bash
 # Source: https://github.com/nicksp/dotfiles/blob/master/install/brew.sh
 
-#
-# NOTE  Installs Homebrew and some of the common dependencies needed/desired for
-#       software development
-#
-
 # Check for Homebrew and install it if missing
 if test ! $(which brew)
 then
-  if test "$(uname)" = "Darwin"
-  then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
-  then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-  fi
-
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   printf "\e[0;32m  [✔] Installed the latest version of Homebrew\e[0m\n"
 fi
 

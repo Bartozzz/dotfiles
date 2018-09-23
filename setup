@@ -24,41 +24,34 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #                            U T I L S   S E C T I O N
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# NOTE  Asks for confirmation
 answer_is_yes() {
   [[ "$REPLY" =~ ^[Yy]$ ]] \
     && return 0 \
     || return 1
 }
 
-# NOTE  Asks for confirmation
 ask_for_confirmation() {
   print_question "$1 (y/n) "
   read -n 1
   printf "\n"
 }
 
-# NOTE  Print output in red
 print_error() {
   printf "\e[0;31m  [✖] $1 $2\e[0m\n"
 }
 
-# NOTE  Print output in purple
 print_info() {
   printf "\n\e[0;35m $1\e[0m\n\n"
 }
 
-# NOTE  Print output in yellow
 print_question() {
   printf "\e[0;33m  [?] $1\e[0m"
 }
 
-# NOTE  Print output in green
 print_success() {
   printf "\e[0;32m  [✔] $1\e[0m\n"
 }
 
-# NOTE  Print command result
 print_result() {
   [ $1 -eq 0 ] \
     && print_success "$2" \
@@ -68,7 +61,6 @@ print_result() {
     && exit
 }
 
-# NOTE  Execute script
 execute() {
   $1 &> /dev/null
   print_result $? "${2:-$1}"
@@ -80,11 +72,11 @@ execute() {
 #                    P R E P A R A T I O N   S E C T I O N
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# NOTE  Get the dotfiles directory's absolute path
+# Get the dotfiles directory's absolute path
 export CURRENT_DIT="$(cd "$(dirname "$0")"; pwd -P)"
 export DOTFILE_DIR="$(dirname "$CURRENT_DIT")/dotfiles"
 
-# NOTE  Change to the dotfiles directory
+# Change to the dotfiles directory
 cd $DOTFILE_DIR
 print_success "Changed to the $DOTFILE_DIR directory"
 
@@ -93,10 +85,6 @@ print_success "Changed to the $DOTFILE_DIR directory"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #                      S Y M L I N K   S E C T I O N
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# NOTE  Copy Atom editor settings
-# ln -s $DOTFILE_DIR/atom ~/.atom
-# print_success "Copied Atom editor settings"
 
 # NOTE  Files to symlink
 declare -a FILES_TO_SYMLINK=(
@@ -112,7 +100,7 @@ declare -a FILES_TO_SYMLINK=(
   'shell/zshrc'
 )
 
-# NOTE  Symlink files
+# Symlink files
 function symlink() {
   local i=''
   local sourceFile=''
@@ -148,8 +136,13 @@ unset FILES_TO_SYMLINK
 #              P A C K A G E   M A N A G E R S  &  P A C K A G E S
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Preparation
-mkdir ~/.nvm
+# Create .nvm folder:
+if [ ! -d ~/.nvm ]; then
+  mkdir ~/.nvm
+fi
+
+# Install XCode select:
+xcode-select --install
 
 . "$DOTFILE_DIR/install/brew.sh"
 . "$DOTFILE_DIR/install/npm.sh"
@@ -159,15 +152,19 @@ if [ "$(uname)" == "Darwin" ]; then
   . "$DOTFILE_DIR/install/brew-cask.sh"
 fi
 
-
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #                          A T O M   S E C T I O N
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# NOTE  Copy over Atom configs
-# cp -r $DOTFILE_DIR/atom/packages.list $HOME/.atom
+# Copy Atom editor settings:
+# ln -s $DOTFILE_DIR/atom ~/.atom
+# print_success "Copied Atom editor settings"
 
+# Copy over Atom configs:
+# cp -r $DOTFILE_DIR/atom/packages.list $HOME/.atom
+# print_success "Copied Atom editor configs"
+
+# Installs Atom plugins:
 # apm list --installed --bare
 # apm install --packages-file $HOME/.atom/packages.list
 # print_success "Installed Atom editor plugins"

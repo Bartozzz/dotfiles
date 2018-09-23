@@ -1,14 +1,7 @@
-# NOTE  Set Paths
+# Set paths:
 export PATH="$PATH:/usr/local/bin/"
 export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
 
-
-# NOTE  Set default blocksize for ls, df, du
-#       http://hints.macworld.com/comment.php?mode=view&cid=24491
-export BLOCKSIZE=1k
-
-
-# NOTE  Add color to terminal
-#       http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
+# Add color to terminal:
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced

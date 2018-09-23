@@ -1,11 +1,6 @@
 #!/bin/bash
 # Source: https://github.com/nicksp/dotfiles/blob/master/install/npm.sh
 
-#
-# NOTE  This script configures my Node.js development setup. Note that nvm is
-#       installed by the Homebrew install script.
-#
-
 if test ! $(which nvm)
 then
   # Install the latest stable version of node

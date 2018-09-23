@@ -3,38 +3,23 @@
 # Source: https://gist.github.com/shihanng/65b73712df2e51d4d78cc27c218bac35#file-chunkwmrc
 # Author: https://github.com/shihanng
 
-#
-# NOTE: specify the absolutepath of the file to use for logging.
-#       'stdout' and 'stderr' are valid values.
-#
-
+# Specify the absolutepath of the file to use for logging.
+# 'stdout' and 'stderr' are valid values.
 chunkc core::log_file stdout
 
-#
-# NOTE: specify the desired level of logging.
-#       - none, debug, warn, error
-#
-
+# Specify the desired level of logging.
+# - none, debug, warn, error
 chunkc core::log_level error
 
-#
-# NOTE: specify the absolutepath to the directory to use when
-#       loading a plugin. '~' expansion is supported.
-#
-
+# Specify the absolutepath to the directory to use when loading a plugin.
+# '~' expansion is supported.
 chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
 
-#
-# NOTE: if enabled, chunkwm will monitor the specified plugin_dir
-#       and automatically reload any '.so' file that is changed.
-#
-
+# If enabled, chunkwm will monitor the specified plugin_dir and automatically
+# reload any '.so' file that is changed.
 chunkc core::hotload 0
 
-#
-# NOTE: the following are config variables for the chunkwm-tiling plugin.
-#
-
+# The following are config variables for the chunkwm-tiling plugin.
 chunkc set global_desktop_mode           bsp
 chunkc set 2_desktop_mode                monocle
 chunkc set 4_desktop_mode                float
@@ -65,50 +50,34 @@ chunkc set mouse_follows_focus           intrinsic
 chunkc set window_float_next             0
 chunkc set window_region_locked          1
 
-#
-# NOTE: shell commands require escaped quotes
-#       to pass value containing a whitespace.
-#
+# Shell commands require escaped quotes to pass value containing a whitespace.
 chunkc set mouse_modifier                fn
 
 chunkc set preselect_border_color        0xf0202124
 chunkc set preselect_border_width        3
 chunkc set preselect_border_radius       0
 
-#
-# NOTE: these settings require chwm-sa.
-#       (https://github.com/koekeishiya/chwm-sa)
-#
-
+# These settings require chwm-sa.
+# (https://github.com/koekeishiya/chwm-sa)
 chunkc set window_float_topmost          0
 chunkc set window_fade_inactive          0
 chunkc set window_fade_alpha             0.85
 chunkc set window_fade_duration          0.25
 chunkc set window_use_cgs_move           0
 
-#
-# NOTE: the following are config variables for the chunkwm-border plugin.
-#
-
+# The following are config variables for the chunkwm-border plugin.
 chunkc set focused_border_color          0xff202124
 chunkc set focused_border_width          5
 chunkc set focused_border_radius         3
 chunkc set focused_border_skip_floating  1
 
-#
-# NOTE: specify plugins to load when chunkwm starts.
-#       if chunkc plugin_dir is not set, the absolutepath is necessary.
-#
-
+# Specify plugins to load when chunkwm starts. If chunkc plugin_dir is not set,
+# the absolute path is necessary.
 chunkc core::load border.so
 chunkc core::load tiling.so
 chunkc core::load ffm.so
 
-#
-# NOTE: shell commands require escaped quotes
-#       to pass value containing a whitespace.
-#
-
+# Shell commands require escaped quotes to pass value containing a whitespace.
 chunkc tiling::rule --owner Spotify --role AXWindow --subrole AXDialog --state tile
 chunkc tiling::rule --owner iTerm2 --role AXWindow --subrole AXDialog --state tile
 chunkc tiling::rule --owner Finder --name Copy --state float
