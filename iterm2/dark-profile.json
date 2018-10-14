@@ -23,9 +23,11 @@
   "Right Option Key Sends": 0,
   "Character Encoding": 4,
   "Selection Color": {
-    "Green Component": 0.22248570000000001,
-    "Blue Component": 0.51530609999999999,
-    "Red Component": 0.20990739999999999
+    "Red Component": 0.324981689453125,
+    "Color Space": "sRGB",
+    "Blue Component": 0.324981689453125,
+    "Alpha Component": 1,
+    "Green Component": 0.324981689453125
   },
   "Blend": 0.050000000000000003,
   "Mouse Reporting": true,
@@ -351,11 +353,11 @@
   },
   "Transparency": 0,
   "Background Color": {
-    "Red Component": 0.1803921568627451,
+    "Red Component": 0.058823529411764705,
     "Color Space": "sRGB",
-    "Blue Component": 0.20784313725490197,
+    "Blue Component": 0.10196078431372549,
     "Alpha Component": 1,
-    "Green Component": 0.19607843137254902
+    "Green Component": 0.066666666666666666
   },
   "Screen": -1,
   "Non Ascii Font": "Monaco 12",
