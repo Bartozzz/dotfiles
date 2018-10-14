@@ -11,19 +11,16 @@ apps=(
   imageoptim
   # dash
   # atom
-  vscodium
+  # vscodium
   iterm2
   # commander-one
-  firefox
-  firefox-nightly
+  # firefox
+  # firefox-nightly
   google-chrome
   google-chrome-canary
   # spotify
-  skype
-  slack
+  # skype
+  # slack
 )
 
 brew cask install "${apps[@]}"
-
-# Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
-brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize qlprettypatch
