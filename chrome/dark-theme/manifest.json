@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "manifest_version": 2,
+
+  "name": "Dark Theme",
+  "description": "Dark Theme for Google Chrome.",
+
+  "theme": {
+    "images": {
+      "theme_ntp_background": "images/theme_ntp_background.png"
+    },
+
+    "colors": {
+      "frame": [9, 11, 16],
+      "frame_inactive": [18, 22, 32],
+      "frame_incognito": [32, 33, 36],
+      "frame_incognito_inactive": [60, 64, 67],
+      "toolbar": [15, 17, 26],
+      "ntp_background": [15, 17, 26],
+      "ntp_text": [255, 255, 255],
+      "tab_text": [247, 247, 247],
+      "tab_background_text": [154, 160, 166],
+      "bookmark_text": [241, 243, 244]
+    },
+
+    "tints": {
+      "buttons": [-1, -1, 0.96]
+    },
+
+    "properties": {
+      "ntp_logo_alternate": 1,
+      "ntp_background_repeat": "repeat"
+    }
+  }
+}
