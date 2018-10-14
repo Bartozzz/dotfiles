@@ -9,8 +9,16 @@ This is a collection of dotfiles and scripts I use on my macOS. They should be c
 - Useful Homebrew packages;
 
 <div align="center" style="margin: 1rem 0">
+  <img src="https://i.imgur.com/GJPRqcz.png" />
+</div>
+
+### Purple version:
+
+<div align="center" style="margin: 1rem 0">
   <img src="https://i.imgur.com/3OeGD9u.png" />
 </div>
+
+> **Note:** you'll probably need to go thru old commits to get all of the purple version resources.
 
 ## `~/.dotfiles/setup`
 
